@@ -98,7 +98,15 @@ const Header = () => {
                     onMouseEnter={() => setCourseDropdown(true)}
                     onMouseLeave={() => setCourseDropdown(false)}
                 >
-                    <button className={`text-[11px] font-body transition-all duration-500 uppercase tracking-[0.2em] flex items-center gap-2 group ${isActive ? "text-gold font-medium" : showSolid ? "text-slate-600 hover:text-gold" : "text-white/80 hover:text-white"}`}>
+                    <button 
+                        onClick={() => {
+                            if (isHome) {
+                                document.getElementById("formaciones")?.scrollIntoView({ behavior: "smooth" });
+                            } else {
+                                navigate("/#formaciones");
+                            }
+                        }}
+                        className={`text-[11px] font-body transition-all duration-500 uppercase tracking-[0.2em] flex items-center gap-2 group ${isActive ? "text-gold font-medium" : showSolid ? "text-slate-600 hover:text-gold" : "text-white/80 hover:text-white"}`}>
                         {link.label}
                         <ChevronDown className={`w-3 h-3 transition-transform duration-500 ${courseDropdown ? 'rotate-180' : ''}`} />
                     </button>
