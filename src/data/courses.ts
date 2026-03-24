@@ -204,7 +204,7 @@ Si sentís que es momento de dejar de repetir historias y empezar a elegir desde
     image: course1,
     description: "Programa completo de formación profesional para quienes desean convertirse en consteladores y acompañar procesos sistémicos. Aprenderás los principios sistémicos, los órdenes del amor, y la técnica de constelaciones grupales e individuales con supervisión de casos clínicos.",
     originalPrice: 300,
-    price: 199,
+    price: 49000,
     modules: ["Bases sistémicas", "Órdenes del amor", "Técnica individual", "Supervición clínica"],
     duration: "10 meses",
     lessons: [
@@ -226,7 +226,7 @@ Si sentís que es momento de dejar de repetir historias y empezar a elegir desde
     image: course2,
     description: "Curso intensivo donde aprenderás las bases biológicas de la enfermedad, la lectura de conflictos emocionales y el protocolo de acompañamiento terapéutico. Incluye material didáctico completo, casos prácticos reales y acompañamiento post-curso.",
     originalPrice: 300,
-    price: 199,
+    price: 49000,
     modules: ["Sentido biológico del síntoma", "Proyecto sentido", "Transgeneracional", "Protocolos de consulta"],
     duration: "8 meses",
     lessons: [
@@ -247,7 +247,7 @@ Si sentís que es momento de dejar de repetir historias y empezar a elegir desde
     image: course4,
     description: "Encuentros temáticos profundos que abordan aspectos específicos de la terapia, la conciencia y la práctica clínica. Formato flexible con grabaciones disponibles y material complementario para seguir profundizando.",
     originalPrice: 300,
-    price: 199,
+    price: 49000,
     modules: ["Duelo y pérdida", "El niño interior", "Abundancia y dinero", "Pareja y sistemas"],
     duration: "4 encuentros",
     lessons: [
@@ -266,7 +266,7 @@ Si sentís que es momento de dejar de repetir historias y empezar a elegir desde
     image: course5,
     description: "Espacios vivenciales donde se trabaja con herramientas de conciencia, meditación y procesos de sanación grupal. Técnicas de meditación, trabajo con emociones y herramientas de sanación personal para una experiencia transformadora.",
     originalPrice: 300,
-    price: 199,
+    price: 49000,
     modules: ["Meditación profunda", "Gestión emocional", "Respiración consciente", "Círculo de sanación"],
     duration: "Vivencial",
     lessons: [
