@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+html, body {
+  scroll-behavior: smooth;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 100 30% 15%;
+
+    --card: 45 30% 97%;
+    --card-foreground: 100 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 100 30% 15%;
+
+    --primary: 44 72% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 20% 95%;
+    --secondary-foreground: 100 30% 15%;
+
+    --muted: 45 15% 92%;
+    --muted-foreground: 100 15% 40%;
+
+    --accent: 44 72% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 45 20% 85%;
+    --input: 45 15% 90%;
+    --ring: 44 72% 45%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 100 30% 15%;
+    --sidebar-primary: 44 72% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 20% 95%;
+    --sidebar-accent-foreground: 100 30% 15%;
+    --sidebar-border: 45 20% 85%;
+    --sidebar-ring: 44 72% 45%;
+
+    /* Custom tokens */
+    --gold: 44 72% 45%;
+    --gold-light: 44 72% 60%;
+    --gold-dark: 44 72% 35%;
+    --deep-blue: 45 30% 97%;
+    --deep-green: 100 88% 11%;
+    --surface: 0 0% 100%;
+    --surface-alt: 45 25% 96%;
+
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    position: relative;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold)), hsl(var(--gold-dark)));
+  }
+
+  .bg-surface {
+    background-color: hsl(var(--surface));
+  }
+
+  .bg-surface-alt {
+    background-color: hsl(var(--surface-alt));
+  }
+
+  .bg-deep-blue {
+    background-color: hsl(var(--deep-blue));
+  }
+
+  .bg-deep-green {
+    background-color: hsl(var(--deep-green));
+  }
+
+  .border-gold {
+    border-color: hsl(var(--gold));
+  }
+
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+
+  .text-gold-light {
+    color: hsl(var(--gold-light));
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 40px -10px hsl(var(--gold) / 0.3);
+  }
+
+  .section-padding {
+    @apply px-6 py-20 md:px-12 lg:px-24 lg:py-32;
+  }
+}
+
+/* Fix para el bloqueo de 568px en videos de YouTube */
+#video-player-container iframe {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
