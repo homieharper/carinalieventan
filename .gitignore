@@ -14,7 +14,10 @@ dist-ssr
 .env
 .env.*
 !.env.example
-
+.agents/
+.agent/
+_agents/
+_agent/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
