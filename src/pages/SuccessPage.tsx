@@ -1,20 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Play, ArrowRight, Sparkles } from "lucide-react";
+import { CheckCircle2, Play, Sparkles, Loader2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
+import { useUser } from "@clerk/clerk-react";
 
 const SuccessPage = () => {
     const { id } = useParams();
     const [searchParams] = useSearchParams();
+    const { user } = useUser();
     const courseId = id || searchParams.get("courseId") || "constelaciones-familiares";
+    const paymentId = searchParams.get("payment_id") || searchParams.get("collection_id");
+    const [enrolling, setEnrolling] = useState(true);
 
     useEffect(() => {
-        // Here we could update the local state or DB to grant access
         window.scrollTo(0, 0);
-    }, []);
+
+        const confirmEnrollment = async () => {
+            if (!paymentId || !user) {
+                setEnrolling(false);
+                return;
+            }
+            try {
+                await fetch(`${import.meta.env.VITE_API_URL || 'https://carinalieventan.com'}/api/confirm-enrollment`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ paymentId, courseId, userId: user.id })
+                });
+            } catch (err) {
+                console.error("Could not confirm enrollment:", err);
+            } finally {
+                setEnrolling(false);
+            }
+        };
+
+        confirmEnrollment();
+    }, [paymentId, courseId, user]);
 
     return (
         <div className="min-h-screen bg-white">
@@ -62,10 +85,16 @@ const SuccessPage = () => {
                     transition={{ delay: 0.4 }}
                     className="flex flex-col sm:flex-row gap-4"
                 >
-                    <Button variant="gold" size="lg" className="h-14 px-10 uppercase tracking-widest text-xs" asChild>
-                        <Link to={`/formacion/${courseId}`}>
-                            <Play className="mr-2 h-4 w-4 fill-current" /> Entrar al Aula Virtual
-                        </Link>
+                    <Button variant="gold" size="lg" disabled={enrolling} className="h-14 px-10 uppercase tracking-widest text-xs" asChild={!enrolling}>
+                        {enrolling ? (
+                            <>
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Preparando acceso…
+                            </>
+                        ) : (
+                            <Link to={`/formacion/${courseId}`}>
+                                <Play className="mr-2 h-4 w-4 fill-current" /> Entrar al Aula Virtual
+                            </Link>
+                        )}
                     </Button>
                     <Button variant="outline" size="lg" className="h-14 px-10 border-slate-200 text-slate-600 uppercase tracking-widest text-[10px]" asChild>
                         <Link to="/">Volver al Inicio</Link>

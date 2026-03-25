@@ -148,7 +148,7 @@ const LearningPage = () => {
         <div className="min-h-screen bg-[#F8F9FA] flex flex-col max-w-full overflow-hidden relative">
             <Header />
 
-            <main className="flex-grow pt-24 pb-12 px-4 md:px-8 max-w-[1600px] mx-auto w-full overflow-hidden">
+            <main className="flex-grow pt-24 pb-12 px-4 md:px-8 max-w-[1600px] mx-auto w-full">
                 {/* Breadcrumbs */}
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 items-start relative z-10">
               {/* Columna Izquierda: Contenido Principal */}
@@ -381,7 +381,7 @@ const LearningPage = () => {
              </div>
 
              {/* Columna Derecha: Sidebar (Sticky) */}
-             <aside className="order-first lg:order-last lg:sticky lg:top-24 space-y-4">
+             <aside className="order-first lg:order-last lg:sticky lg:top-24 self-start">
                 <div 
                     style={{ '--video-height': videoHeight !== 'auto' ? `${videoHeight}px` : 'auto' } as any}
                     className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-auto lg:h-[var(--video-height)]"

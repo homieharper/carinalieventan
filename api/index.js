@@ -54,6 +54,7 @@ app.post('/api/create-preference', async (req, res) => {
                 auto_return: 'approved',
                 binary_mode: true,
                 notification_url: `${process.env.BACKEND_URL || 'https://carinalieventan.com'}/api/webhook`,
+                external_reference: `${courseId}|${userId}`,
                 metadata: {
                     course_id: courseId,
                     user_id: userId
@@ -86,25 +87,38 @@ app.post('/api/webhook', async (req, res) => {
             const paymentInfo = await payment.get({ id: paymentId });
             
             if (paymentInfo.status === 'approved') {
-                const { course_id, user_id } = paymentInfo.metadata;
-                
+                let { course_id, user_id } = paymentInfo.metadata || {};
+
+                // Fallback: parse from external_reference if metadata is missing
+                if (!course_id || !user_id) {
+                    const parts = (paymentInfo.external_reference || '').split('|');
+                    course_id = parts[0] || course_id;
+                    user_id = parts[1] || user_id;
+                    console.log(`Metadata missing, using external_reference fallback: ${course_id}|${user_id}`);
+                }
+
                 console.log(`Payment Approved! Course: ${course_id}, User: ${user_id}`);
 
-                // Register enrollment in Supabase
-                const { error } = await supabase
+                // Check if already enrolled (idempotent — SuccessPage may have already inserted)
+                const { data: existing } = await supabase
                     .from('enrollments')
-                    .insert([
-                        { 
-                            user_id, 
-                            course_id, 
-                            status: 'paid' 
-                        }
-                    ]);
+                    .select('id')
+                    .eq('user_id', user_id)
+                    .eq('course_id', course_id)
+                    .maybeSingle();
 
-                if (error) {
-                    console.error("Supabase Enrollment Error:", error);
+                if (existing) {
+                    console.log("Enrollment already exists, skipping insert.");
                 } else {
-                    console.log("Enrollment success!");
+                    const { error } = await supabase
+                        .from('enrollments')
+                        .insert([{ user_id, course_id, status: 'paid' }]);
+
+                    if (error) {
+                        console.error("Supabase Enrollment Error:", error);
+                    } else {
+                        console.log("Enrollment success!");
+                    }
                 }
             }
         }
@@ -113,6 +127,63 @@ app.post('/api/webhook', async (req, res) => {
     } catch (error) {
         console.error("Webhook Error:", error);
         res.status(500).send("Internal Server Error");
+    }
+});
+
+/**
+ * Confirm enrollment after successful payment redirect.
+ * Called by SuccessPage as a fallback in case the webhook hasn't fired yet.
+ */
+app.post('/api/confirm-enrollment', async (req, res) => {
+    try {
+        const { paymentId, courseId, userId } = req.body;
+        if (!paymentId || !courseId || !userId) {
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        const payment = new Payment(client);
+        const paymentInfo = await payment.get({ id: paymentId });
+
+        console.log(`Confirm enrollment: payment ${paymentId} status=${paymentInfo.status}`);
+
+        if (paymentInfo.status !== 'approved') {
+            return res.status(400).json({ error: 'Payment not approved', status: paymentInfo.status });
+        }
+
+        // Verify the payment belongs to this course (security check)
+        const extRef = paymentInfo.external_reference || '';
+        const refCourseId = extRef.split('|')[0];
+        if (refCourseId && refCourseId !== courseId) {
+            console.warn(`Course mismatch: expected ${courseId}, got ${refCourseId}`);
+            return res.status(400).json({ error: 'Payment does not match course' });
+        }
+
+        // Check if already enrolled (idempotent)
+        const { data: existing } = await supabase
+            .from('enrollments')
+            .select('id')
+            .eq('user_id', userId)
+            .eq('course_id', courseId)
+            .maybeSingle();
+
+        if (existing) {
+            return res.json({ success: true, already: true });
+        }
+
+        const { error } = await supabase
+            .from('enrollments')
+            .insert([{ user_id: userId, course_id: courseId, status: 'paid' }]);
+
+        if (error) {
+            console.error("Confirm enrollment Supabase error:", error);
+            return res.status(500).json({ error: 'Failed to register enrollment' });
+        }
+
+        console.log(`Confirm enrollment success: user ${userId} -> course ${courseId}`);
+        res.json({ success: true });
+    } catch (error) {
+        console.error("Confirm enrollment error:", error);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
