@@ -66,7 +66,7 @@ const Header = () => {
                     <img src={logo} alt="Logo" className="w-8 h-8 md:w-11 md:h-11 relative transition-transform duration-700 group-hover:rotate-[360deg]" />
                 </div>
                 <div className="flex flex-col">
-                    <span className="font-display text-[10px] sm:text-xs md:text-xl text-gold leading-none tracking-wider md:tracking-[0.2em] uppercase">Carina Lieventan</span>
+                    <span className="font-display text-xs sm:text-sm md:text-xl text-gold leading-none tracking-wider md:tracking-[0.2em] uppercase">Carina Lieventan</span>
                 </div>
              </Link>
 

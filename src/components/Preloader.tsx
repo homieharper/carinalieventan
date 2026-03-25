@@ -68,7 +68,7 @@ export const Preloader = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.5 }}
                             transition={{ delay: 1.5 }}
-                            className="text-[10px] font-body text-gold uppercase tracking-[0.8em]"
+                            className="text-[10px] font-body text-gold uppercase tracking-widest md:tracking-[0.8em]"
                         >
                             Elevando la Conciencia
                         </motion.span>

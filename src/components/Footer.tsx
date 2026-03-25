@@ -28,8 +28,8 @@ const Footer = () => {
                 <img src={logo} alt="Logo" className="w-full h-full opacity-90 group-hover:rotate-[360deg] transition-transform duration-700" />
              </div>
              <div className="flex flex-col">
-                <span className="font-display text-sm md:text-xl text-gold leading-none tracking-widest md:tracking-[0.4em] uppercase mb-1">Carina Lieventan</span>
-                <span className="text-[7px] md:text-[8px] text-white/40 uppercase tracking-[0.2em] md:tracking-[0.4em] font-body font-light">Ecos de Sanación</span>
+                <span className="font-display text-sm md:text-xl text-gold leading-none tracking-widest md:tracking-[0.3em] uppercase mb-1">Carina Lieventan</span>
+                <span className="text-[7px] md:text-[8px] text-white/40 uppercase tracking-widest md:tracking-[0.3em] font-body font-light">Ecos de Sanación</span>
              </div>
           </Link>
           <p className="text-white/60 font-body text-sm leading-relaxed mb-10 max-w-sm italic pr-4">
@@ -56,7 +56,7 @@ const Footer = () => {
 
         {/* Navigation */}
         <div>
-          <h4 className="font-display text-xs text-gold uppercase tracking-[0.4em] mb-10 opacity-80 flex items-center gap-2">
+          <h4 className="font-display text-xs text-gold uppercase tracking-widest md:tracking-[0.3em] mb-10 opacity-80 flex items-center gap-2">
               <Sparkles className="w-3 h-3" /> Navegación
           </h4>
           <ul className="space-y-4">
@@ -72,7 +72,7 @@ const Footer = () => {
                     <Link 
                         to="/" 
                         onClick={handleHomeClick}
-                        className="text-white/50 hover:text-gold transition-all duration-300 text-[10px] uppercase tracking-[0.3em] font-body flex items-center gap-3 group"
+                        className="text-white/50 hover:text-gold transition-all duration-300 text-[10px] uppercase tracking-widest md:tracking-[0.2em] font-body flex items-center gap-3 group"
                     >
                         <ChevronRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-gold" />
                         {item.label}
@@ -80,7 +80,7 @@ const Footer = () => {
                 ) : (
                     <a 
                         href={item.href} 
-                        className="text-white/50 hover:text-gold transition-all duration-300 text-[10px] uppercase tracking-[0.3em] font-body flex items-center gap-3 group"
+                        className="text-white/50 hover:text-gold transition-all duration-300 text-[10px] uppercase tracking-widest md:tracking-[0.2em] font-body flex items-center gap-3 group"
                     >
                         <ChevronRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-gold" />
                         {item.label}
@@ -93,7 +93,7 @@ const Footer = () => {
 
         {/* Legal */}
         <div>
-          <h4 className="font-display text-xs text-gold uppercase tracking-[0.4em] mb-10 opacity-80 flex items-center gap-2">
+          <h4 className="font-display text-xs text-gold uppercase tracking-widest md:tracking-[0.3em] mb-10 opacity-80 flex items-center gap-2">
               <Sparkles className="w-3 h-3" /> Legales
           </h4>
           <ul className="space-y-4">
@@ -110,7 +110,7 @@ const Footer = () => {
 
         {/* Location & Contact */}
         <div className="lg:col-span-1">
-            <h4 className="font-display text-xs text-gold uppercase tracking-[0.4em] mb-10 opacity-80 flex items-center gap-2">
+            <h4 className="font-display text-xs text-gold uppercase tracking-widest md:tracking-[0.3em] mb-10 opacity-80 flex items-center gap-2">
                 <Sparkles className="w-3 h-3" /> Ubicación
             </h4>
             <div className="space-y-6">
@@ -139,7 +139,7 @@ const Footer = () => {
 
       {/* Final Section */}
       <div className="w-full max-w-7xl mx-auto mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
-        <p className="text-white/20 text-[8px] md:text-[9px] uppercase tracking-widest md:tracking-[0.2em] lg:tracking-[0.5em] font-body text-center md:text-left text-balance max-w-[280px] sm:max-w-none">
+        <p className="text-white/20 text-[8px] md:text-[9px] uppercase tracking-widest md:tracking-[0.2em] font-body text-center md:text-left text-balance max-w-[280px] sm:max-w-none">
           &copy; {new Date().getFullYear()} Carina Lieventan. Todos los derechos reservados.
         </p>
         <div className="flex items-baseline gap-2 group cursor-default">

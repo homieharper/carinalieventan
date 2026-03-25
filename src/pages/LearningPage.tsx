@@ -148,11 +148,11 @@ const LearningPage = () => {
         <div className="min-h-screen bg-[#F8F9FA] flex flex-col max-w-full overflow-hidden relative">
             <Header />
 
-            <main className="flex-grow pt-24 pb-12 px-4 md:px-8 max-w-[1600px] mx-auto w-full">
+            <main className="flex-grow pt-24 pb-12 px-4 md:px-8 max-w-[1600px] mx-auto w-full overflow-hidden">
                 {/* Breadcrumbs */}
-           <div className="grid lg:grid-cols-[1fr_400px] gap-8 items-start">
-             {/* Columna Izquierda: Contenido Principal */}
-             <div className="space-y-8 min-w-0">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8 items-start relative z-10">
+              {/* Columna Izquierda: Contenido Principal */}
+              <div className="space-y-6 md:space-y-8 min-w-0 w-full order-last lg:order-first">
                {/* 1. Video Player */}
                <div 
                     ref={videoRef}
@@ -194,10 +194,7 @@ const LearningPage = () => {
                                 <div className="w-20 h-20 rounded-full bg-gold/20 backdrop-blur-xl border border-gold/30 flex items-center justify-center mb-6">
                                     <Lock className="w-8 h-8 text-gold" />
                                 </div>
-                                <h2 className="font-display text-xl md:text-3xl text-white mb-4 lowercase italic px-4 text-balance">formación protegida</h2>
-                                <p className="text-white/80 max-w-[280px] sx:max-w-sm md:max-w-md mb-8 font-body leading-relaxed text-[13px] md:text-sm px-4 md:px-6 text-balance">
-                                    Únete a los más de 500 alumnos que ya están transformando su mirada sistémica. Desbloquea el acceso inmediato.
-                                </p>
+                                <h2 className="font-display text-xl md:text-3xl text-white mb-6 md:mb-8 italic px-4 text-balance font-light">formación protegida</h2>
                                 
                                 <SignedIn>
                                     <Button 
@@ -239,21 +236,21 @@ const LearningPage = () => {
 
                     <div className="mb-8">
                         <div className="flex items-center gap-2 mb-4">
-                            <span className="bg-deep-green/10 text-deep-green text-[10px] uppercase tracking-widest px-3 py-1 rounded-full font-bold">
+                            <span className="bg-deep-green/10 text-deep-green text-[10px] uppercase tracking-wide md:tracking-widest px-3 py-1 rounded-full font-bold shrink-0">
                                 {hasAccess ? "Lección en curso" : "Sobre esta formación"}
                             </span>
                         </div>
-                        <h1 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-5xl text-slate-900 leading-tight text-balance">
+                        <h1 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-5xl text-slate-900 leading-tight text-balance break-words overflow-wrap-anywhere">
                             {hasAccess ? activeLesson?.title : course.title}
                         </h1>
                         
                         {hasAccess && (
-                            <div className="flex items-center gap-4 mt-4">
-                                <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-body bg-slate-50 px-3 py-1.5 rounded-full border border-slate-100">
+                            <div className="flex flex-wrap items-center gap-2 md:gap-4 mt-4">
+                                <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-wide md:tracking-[0.2em] font-body bg-slate-50 px-3 py-1.5 rounded-full border border-slate-100">
                                     <Clock className="w-3.5 h-3.5 text-gold" />
                                     <span>Duración: {activeLesson?.duration}</span>
                                 </div>
-                                <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-[0.2em] font-body bg-slate-50 px-3 py-1.5 rounded-full border border-slate-100">
+                                <div className="flex items-center gap-2 text-[10px] text-muted-foreground uppercase tracking-wide md:tracking-[0.2em] font-body bg-slate-50 px-3 py-1.5 rounded-full border border-slate-100">
                                     <Play className="w-3.5 h-3.5 text-gold" />
                                     <span>Video HD</span>
                                 </div>
@@ -317,7 +314,7 @@ const LearningPage = () => {
                         )}
 
                         {!hasAccess && (
-                            <div className="grid md:grid-cols-2 gap-6 pt-10 border-t border-slate-100">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 pt-10 border-t border-slate-100">
                                 <div className="space-y-4">
                                     <h3 className="font-display text-xl text-slate-900 italic">¿Qué incluye?</h3>
                                     <ul className="space-y-3">
@@ -332,11 +329,11 @@ const LearningPage = () => {
                                 <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
                                      <h3 className="font-display text-xl text-slate-900 mb-4 italic">Detalles:</h3>
                                      <div className="space-y-3">
-                                        <div className="flex items-center gap-3 text-xs text-muted-foreground uppercase tracking-widest font-body">
+                                        <div className="flex items-center gap-3 text-xs text-muted-foreground uppercase tracking-wide md:tracking-widest font-body">
                                             <Clock className="w-4 h-4 text-gold" />
                                             <span>Duración: {course.duration}</span>
                                         </div>
-                                        <div className="flex items-center gap-3 text-xs text-muted-foreground uppercase tracking-widest font-body">
+                                        <div className="flex items-center gap-3 text-xs text-muted-foreground uppercase tracking-wide md:tracking-widest font-body">
                                             <BookOpen className="w-4 h-4 text-gold" />
                                             <span>{course.lessons?.length} Lecciones</span>
                                         </div>
@@ -348,7 +345,7 @@ const LearningPage = () => {
                         {course.resources?.length > 0 && (
                             <div className="mt-10 pt-10 border-t border-slate-100">
                                 <h3 className="font-display text-xl text-slate-900 mb-6 italic">Materiales y Recursos:</h3>
-                                <div className="grid md:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {course.resources.map((res, i) => (
                                         <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-100 group transition-all duration-300">
                                             <div className="flex items-center gap-3">
@@ -384,7 +381,7 @@ const LearningPage = () => {
              </div>
 
              {/* Columna Derecha: Sidebar (Sticky) */}
-             <aside className="lg:sticky lg:top-24 space-y-4">
+             <aside className="order-first lg:order-last lg:sticky lg:top-24 space-y-4">
                 <div 
                     style={{ '--video-height': videoHeight !== 'auto' ? `${videoHeight}px` : 'auto' } as any}
                     className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col h-auto lg:h-[var(--video-height)]"
@@ -409,7 +406,7 @@ const LearningPage = () => {
                                 />
                             </div>
                         ) : (
-                            <p className="text-xs text-muted-foreground uppercase tracking-widest font-body">
+                            <p className="text-xs text-muted-foreground uppercase tracking-wide md:tracking-widest font-body">
                                 {course.lessons?.length} Lecciones
                             </p>
                         )}
@@ -436,12 +433,12 @@ const LearningPage = () => {
                                 `}>
                                     {idx + 1}
                                 </div>
-                                <div className="flex flex-col items-start truncate text-left">
+                                <div className="flex flex-col items-start text-left min-w-0 flex-1">
                                     <span className="text-sm font-medium leading-tight mb-1 truncate w-full">
                                         {lesson.title}
                                     </span>
                                     <div className="flex items-center gap-3">
-                                        <span className={`text-[10px] uppercase tracking-widest font-bold ${activeLessonId === lesson.id && hasAccess ? 'text-white/70' : 'text-slate-400'}`}>
+                                        <span className={`text-[10px] uppercase tracking-wide md:tracking-widest font-bold ${activeLessonId === lesson.id && hasAccess ? 'text-white/70' : 'text-slate-400'}`}>
                                             {lesson.duration}
                                         </span>
                                     </div>
