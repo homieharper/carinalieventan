@@ -221,7 +221,7 @@ const LearningPage = () => {
                                                 Procesando…
                                             </>
                                         ) : (
-                                            `Inscribirme Ahora ($49.000)`
+                                            `Inscribirme Ahora ($${course.price?.toLocaleString('es-AR')})`
                                         )}
                                     </Button>
                                 </SignedIn>

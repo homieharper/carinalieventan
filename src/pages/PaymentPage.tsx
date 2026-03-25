@@ -46,8 +46,8 @@ const PaymentPage = () => {
           <div className="bg-card border border-border rounded-2xl p-6 mb-8">
             <h2 className="font-display text-2xl text-foreground mb-2">{course.title}</h2>
             <div className="flex items-center gap-3">
-              <span className="font-body text-muted-foreground line-through">${course.originalPrice}</span>
-              <span className="font-display text-3xl text-gold font-bold">${course.price}</span>
+              <span className="font-body text-muted-foreground line-through">${course.originalPrice.toLocaleString('es-AR')}</span>
+              <span className="font-display text-3xl text-gold font-bold">${course.price.toLocaleString('es-AR')}</span>
             </div>
           </div>
 
@@ -105,7 +105,7 @@ const PaymentPage = () => {
                 <div className="pt-4 border-t border-border">
                   <div className="flex justify-between items-center">
                     <p className="text-sm font-body text-muted-foreground">Monto a transferir</p>
-                    <p className="font-display text-2xl text-gold font-bold">${course.price}</p>
+                    <p className="font-display text-2xl text-gold font-bold">${course.price.toLocaleString('es-AR')}</p>
                   </div>
                 </div>
               </div>

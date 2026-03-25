@@ -62,7 +62,7 @@ Primeros pasos y sugerencias para comenzar a sanarlas de forma consciente
 💫 Podés verla a tu ritmo, las veces que necesites, creando tu propio espacio de transformación.
 Si sentís que es momento de dejar de repetir historias y empezar a elegir desde un lugar más consciente… este espacio es para vos.`,
     originalPrice: 75000,
-    price: 1,
+    price: 49000,
     modules: [
         "Las 5 heridas infantiles primarias",
         "Origen y activadores de las heridas",
