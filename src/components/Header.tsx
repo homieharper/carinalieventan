@@ -122,13 +122,22 @@ const Header = () => {
                                 <div className="bg-white rounded-2xl border border-gold/20 shadow-2xl py-3 overflow-hidden">
                                      <div className="flex flex-col">
                                          {courses.map(course => (
-                                             <Link 
-                                                key={course.id} 
-                                                to={`/formacion/${course.id}`}
-                                                className="px-6 py-3 text-[11px] font-body text-slate-600 hover:text-gold hover:bg-gold/5 transition-all duration-300 uppercase tracking-[0.2em]"
-                                             >
-                                                {course.title}
-                                             </Link>
+                                             course.isComingSoon ? (
+                                                 <span 
+                                                    key={course.id} 
+                                                    className="px-6 py-3 text-[11px] font-body text-slate-400 cursor-not-allowed uppercase tracking-[0.2em]"
+                                                 >
+                                                    Próximamente
+                                                 </span>
+                                             ) : (
+                                                 <Link 
+                                                    key={course.id} 
+                                                    to={`/formacion/${course.id}`}
+                                                    className="px-6 py-3 text-[11px] font-body text-slate-600 hover:text-gold hover:bg-gold/5 transition-all duration-300 uppercase tracking-[0.2em]"
+                                                 >
+                                                    {course.title}
+                                                 </Link>
+                                             )
                                          ))}
                                      </div>
                                 </div>

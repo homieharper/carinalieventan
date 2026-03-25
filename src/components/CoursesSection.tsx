@@ -48,7 +48,7 @@ const CoursesSection = () => {
                 </div>
                 <div className="flex flex-col flex-1 p-8">
                   <h3 className="font-display text-2xl text-white mb-3 leading-tight group-hover/card:text-gold transition-colors duration-300">
-                      {course.title}
+                      {course.isComingSoon ? "Próximamente" : course.title}
                   </h3>
                   <p className="font-body text-sm text-zinc-300/80 leading-relaxed mb-8 flex-1">
                       {course.shortDesc}
@@ -57,7 +57,12 @@ const CoursesSection = () => {
                       <span className="text-xs font-body text-zinc-400 uppercase tracking-widest">Duración</span>
                       <span className="text-xs font-body font-medium text-white uppercase tracking-widest">{course.duration}</span>
                   </div>
-                  <FlowButtonGold text="Detalles del Programa" href={`/formacion/${course.id}`} variant="white" />
+                  <FlowButtonGold 
+                    text={course.isComingSoon ? "Próximamente" : "Detalles del Programa"} 
+                    href={course.isComingSoon ? undefined : `/formacion/${course.id}`} 
+                    variant="white" 
+                    disabled={course.isComingSoon}
+                  />
                 </div>
               </GlowCard>
             </motion.div>

@@ -34,6 +34,7 @@ export interface Course {
   duration: string;
   lessons: Lesson[];
   resources: Resource[];
+  isComingSoon?: boolean;
 }
 
 export const courses: Course[] = [
@@ -217,7 +218,8 @@ Si sentís que es momento de dejar de repetir historias y empezar a elegir desde
     resources: [
       { title: "Manual del Constelador PDF", size: "2.4 MB" },
       { title: "Gráfico de Genograma", size: "1.1 MB" }
-    ]
+    ],
+    isComingSoon: true
   },
   {
     id: "biodescodificacion",
@@ -238,7 +240,8 @@ Si sentís que es momento de dejar de repetir historias y empezar a elegir desde
     resources: [
       { title: "Diccionario de Biodescodificación", size: "5.8 MB" },
       { title: "Protocolo de Consulta", size: "0.5 MB" }
-    ]
+    ],
+    isComingSoon: true
   },
   {
     id: "masterclass-terapeuticas",
@@ -257,7 +260,8 @@ Si sentís que es momento de dejar de repetir historias y empezar a elegir desde
     ],
     resources: [
       { title: "Meditación de Sanación MP3", size: "15 MB" }
-    ]
+    ],
+    isComingSoon: true
   },
   {
     id: "talleres-conciencia",
@@ -273,7 +277,8 @@ Si sentís que es momento de dejar de repetir historias y empezar a elegir desde
       { id: "meditacion-1", title: "Meditación de Arraigo", duration: "20:00", type: "video" },
       { id: "respiracion", title: "Respiración Holotrópica Intro", duration: "15:00", type: "video" },
     ],
-    resources: []
+    resources: [],
+    isComingSoon: true
   },
   {
     id: "tarot-arquetipos",
@@ -291,6 +296,7 @@ Si sentís que es momento de dejar de repetir historias y empezar a elegir desde
     ],
     resources: [
       { title: "Significado de Cartas PDF", size: "10 MB" }
-    ]
+    ],
+    isComingSoon: true
   }
 ];
