@@ -94,14 +94,25 @@ const LearningPage = () => {
         const checkAccess = async () => {
             if (!user || !course) return;
 
-            const { data, error } = await supabase
-                .from('enrollments')
-                .select('*')
-                .eq('user_id', user.id)
-                .eq('course_id', course.id)
-                .maybeSingle();
-
-            if (data) setHasAccess(true);
+            try {
+                // Use backend endpoint (service_role key) to bypass Supabase RLS
+                const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/check-access`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId: user.id, courseId: course.id })
+                });
+                const result = await res.json();
+                if (result.hasAccess) setHasAccess(true);
+            } catch (err) {
+                // Fallback: direct Supabase query (works if RLS allows anon reads)
+                const { data } = await supabase
+                    .from('enrollments')
+                    .select('*')
+                    .eq('user_id', user.id)
+                    .eq('course_id', course.id)
+                    .maybeSingle();
+                if (data) setHasAccess(true);
+            }
         };
 
         checkAccess();

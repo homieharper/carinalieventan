@@ -10,7 +10,7 @@ import { useUser } from "@clerk/clerk-react";
 const SuccessPage = () => {
     const { id } = useParams();
     const [searchParams] = useSearchParams();
-    const { user } = useUser();
+    const { isLoaded, user } = useUser();
     const courseId = id || searchParams.get("courseId") || "constelaciones-familiares";
     const paymentId = searchParams.get("payment_id") || searchParams.get("collection_id");
     const [enrolling, setEnrolling] = useState(true);
@@ -18,17 +18,24 @@ const SuccessPage = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
 
+        // Wait for Clerk to load before doing anything — otherwise we'd
+        // set enrolling=false before the user object is available and the
+        // button would become clickable before the enrollment is created.
+        if (!isLoaded) return;
+
         const confirmEnrollment = async () => {
             if (!paymentId || !user) {
                 setEnrolling(false);
                 return;
             }
             try {
-                await fetch(`${import.meta.env.VITE_API_URL || 'https://carinalieventan.com'}/api/confirm-enrollment`, {
+                const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/confirm-enrollment`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ paymentId, courseId, userId: user.id })
                 });
+                const data = await res.json();
+                console.log("Confirm enrollment result:", data);
             } catch (err) {
                 console.error("Could not confirm enrollment:", err);
             } finally {
@@ -37,7 +44,7 @@ const SuccessPage = () => {
         };
 
         confirmEnrollment();
-    }, [paymentId, courseId, user]);
+    }, [paymentId, courseId, user, isLoaded]);
 
     return (
         <div className="min-h-screen bg-white">

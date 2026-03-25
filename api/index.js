@@ -187,6 +187,31 @@ app.post('/api/confirm-enrollment', async (req, res) => {
     }
 });
 
+/**
+ * Check if a user has access to a course.
+ * Uses service_role key so it works regardless of Supabase RLS policies.
+ */
+app.post('/api/check-access', async (req, res) => {
+    try {
+        const { userId, courseId } = req.body;
+        if (!userId || !courseId) {
+            return res.json({ hasAccess: false });
+        }
+
+        const { data } = await supabase
+            .from('enrollments')
+            .select('id')
+            .eq('user_id', userId)
+            .eq('course_id', courseId)
+            .maybeSingle();
+
+        res.json({ hasAccess: !!data });
+    } catch (error) {
+        console.error("Check access error:", error);
+        res.json({ hasAccess: false });
+    }
+});
+
 // For local development
 if (process.env.NODE_ENV !== 'production') {
     const PORT = 3001;
