@@ -1,7 +1,9 @@
 User-agent: *
 Allow: /
-Allow: /curso/*
+Allow: /formacion/*
 Disallow: /server/
 Disallow: /node_modules/
+Disallow: /dashboard/
+Disallow: /success/
 
 Sitemap: https://carinalieventan.com/sitemap.xml
