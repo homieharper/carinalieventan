@@ -63,7 +63,7 @@ const SuccessPage = () => {
                     className="flex flex-col sm:flex-row gap-4"
                 >
                     <Button variant="gold" size="lg" className="h-14 px-10 uppercase tracking-widest text-xs" asChild>
-                        <Link to={`/curso/${courseId}`}>
+                        <Link to={`/formacion/${courseId}`}>
                             <Play className="mr-2 h-4 w-4 fill-current" /> Entrar al Aula Virtual
                         </Link>
                     </Button>

@@ -124,7 +124,7 @@ const Header = () => {
                                          {courses.map(course => (
                                              <Link 
                                                 key={course.id} 
-                                                to={`/curso/${course.id}`}
+                                                to={`/formacion/${course.id}`}
                                                 className="px-6 py-3 text-[11px] font-body text-slate-600 hover:text-gold hover:bg-gold/5 transition-all duration-300 uppercase tracking-[0.2em]"
                                              >
                                                 {course.title}

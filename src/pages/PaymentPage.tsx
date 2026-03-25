@@ -38,7 +38,7 @@ const PaymentPage = () => {
       <Header />
       <main className="pt-24 pb-20 px-6 md:px-12 lg:px-24">
         <div className="max-w-2xl mx-auto">
-          <Link to={`/curso/${course.id}`} className="inline-flex items-center gap-2 text-gold font-body text-sm mb-8 hover:underline">
+          <Link to={`/formacion/${course.id}`} className="inline-flex items-center gap-2 text-gold font-body text-sm mb-8 hover:underline">
             <ArrowLeft className="w-4 h-4" /> Volver al curso
           </Link>
 

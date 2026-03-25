@@ -48,7 +48,7 @@ app.post('/api/create-preference', async (req, res) => {
                 ],
                 back_urls: {
                     success: `${process.env.FRONTEND_URL || 'https://carinalieventan.com'}/success?courseId=${courseId}`,
-                    failure: `${process.env.FRONTEND_URL || 'https://carinalieventan.com'}/curso/${courseId}`,
+                    failure: `${process.env.FRONTEND_URL || 'https://carinalieventan.com'}/formacion/${courseId}`,
                     pending: `${process.env.FRONTEND_URL || 'https://carinalieventan.com'}/pending`,
                 },
                 auto_return: 'approved',

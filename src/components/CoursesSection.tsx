@@ -57,7 +57,7 @@ const CoursesSection = () => {
                       <span className="text-xs font-body text-zinc-400 uppercase tracking-widest">Duración</span>
                       <span className="text-xs font-body font-medium text-white uppercase tracking-widest">{course.duration}</span>
                   </div>
-                  <FlowButtonGold text="Detalles del Programa" href={`/curso/${course.id}`} variant="white" />
+                  <FlowButtonGold text="Detalles del Programa" href={`/formacion/${course.id}`} variant="white" />
                 </div>
               </GlowCard>
             </motion.div>

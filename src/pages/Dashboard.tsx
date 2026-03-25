@@ -103,7 +103,7 @@ const Dashboard = () => {
                                         </div>
                                     </div>
                                     <Button variant="gold" className="w-full h-12 uppercase tracking-widest text-[10px]" asChild>
-                                        <Link to={`/curso/${course.id}`}>
+                                        <Link to={`/formacion/${course.id}`}>
                                             Entrar al Aula <ArrowRight className="ml-2 w-3.5 h-3.5" />
                                         </Link>
                                     </Button>

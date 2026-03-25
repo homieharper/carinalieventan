@@ -54,7 +54,7 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/curso/:id" element={<LearningPage />} />
+              <Route path="/formacion/:id" element={<LearningPage />} />
               <Route path="/pago/:id" element={<PaymentPage />} />
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/dashboard" element={<Dashboard />} />
