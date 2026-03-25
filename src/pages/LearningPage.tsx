@@ -107,11 +107,11 @@ const LearningPage = () => {
                 // Fallback: direct Supabase query (works if RLS allows anon reads)
                 const { data } = await supabase
                     .from('enrollments')
-                    .select('*')
+                    .select('id')
                     .eq('user_id', user.id)
                     .eq('course_id', course.id)
-                    .maybeSingle();
-                if (data) setHasAccess(true);
+                    .limit(1);
+                if (data && data.length > 0) setHasAccess(true);
             }
         };
 

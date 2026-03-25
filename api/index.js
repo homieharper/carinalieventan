@@ -105,9 +105,9 @@ app.post('/api/webhook', async (req, res) => {
                     .select('id')
                     .eq('user_id', user_id)
                     .eq('course_id', course_id)
-                    .maybeSingle();
+                    .limit(1);
 
-                if (existing) {
+                if (existing && existing.length > 0) {
                     console.log("Enrollment already exists, skipping insert.");
                 } else {
                     const { error } = await supabase
@@ -164,9 +164,9 @@ app.post('/api/confirm-enrollment', async (req, res) => {
             .select('id')
             .eq('user_id', userId)
             .eq('course_id', courseId)
-            .maybeSingle();
+            .limit(1);
 
-        if (existing) {
+        if (existing && existing.length > 0) {
             return res.json({ success: true, already: true });
         }
 
@@ -203,9 +203,9 @@ app.post('/api/check-access', async (req, res) => {
             .select('id')
             .eq('user_id', userId)
             .eq('course_id', courseId)
-            .maybeSingle();
+            .limit(1);
 
-        res.json({ hasAccess: !!data });
+        res.json({ hasAccess: !!(data && data.length > 0) });
     } catch (error) {
         console.error("Check access error:", error);
         res.json({ hasAccess: false });
