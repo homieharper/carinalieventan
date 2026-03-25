@@ -99,26 +99,18 @@ app.post('/api/webhook', async (req, res) => {
 
                 console.log(`Payment Approved! Course: ${course_id}, User: ${user_id}`);
 
-                // Check if already enrolled (idempotent — SuccessPage may have already inserted)
-                const { data: existing } = await supabase
+                // Upsert: insert or update if already exists (atomic, no duplicates)
+                const { error } = await supabase
                     .from('enrollments')
-                    .select('id')
-                    .eq('user_id', user_id)
-                    .eq('course_id', course_id)
-                    .limit(1);
+                    .upsert(
+                        { user_id, course_id, status: 'paid' },
+                        { onConflict: 'user_id,course_id' }
+                    );
 
-                if (existing && existing.length > 0) {
-                    console.log("Enrollment already exists, skipping insert.");
+                if (error) {
+                    console.error("Supabase Enrollment Error:", error);
                 } else {
-                    const { error } = await supabase
-                        .from('enrollments')
-                        .insert([{ user_id, course_id, status: 'paid' }]);
-
-                    if (error) {
-                        console.error("Supabase Enrollment Error:", error);
-                    } else {
-                        console.log("Enrollment success!");
-                    }
+                    console.log("Enrollment upserted successfully!");
                 }
             }
         }
@@ -158,21 +150,13 @@ app.post('/api/confirm-enrollment', async (req, res) => {
             return res.status(400).json({ error: 'Payment does not match course' });
         }
 
-        // Check if already enrolled (idempotent)
-        const { data: existing } = await supabase
-            .from('enrollments')
-            .select('id')
-            .eq('user_id', userId)
-            .eq('course_id', courseId)
-            .limit(1);
-
-        if (existing && existing.length > 0) {
-            return res.json({ success: true, already: true });
-        }
-
+        // Upsert: insert or update if already exists (atomic, no duplicates)
         const { error } = await supabase
             .from('enrollments')
-            .insert([{ user_id: userId, course_id: courseId, status: 'paid' }]);
+            .upsert(
+                { user_id: userId, course_id: courseId, status: 'paid' },
+                { onConflict: 'user_id,course_id' }
+            );
 
         if (error) {
             console.error("Confirm enrollment Supabase error:", error);
