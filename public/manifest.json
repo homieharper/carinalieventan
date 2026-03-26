@@ -1,0 +1,22 @@
+{
+  "name": "Carina Silvana Lieventan",
+  "short_name": "Carina Lieventan",
+  "description": "Terapias Holísticas y Formación Espiritual",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#C89B3E",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
