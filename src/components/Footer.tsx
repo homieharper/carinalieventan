@@ -97,12 +97,19 @@ const Footer = () => {
               <Sparkles className="w-3 h-3" /> Legales
           </h4>
           <ul className="space-y-4">
-            {["Términos y Condiciones", "Privacidad", "Cookies"].map((legal) => (
-              <li key={legal}>
-                <a href="#" className="text-white/50 hover:text-gold transition-all duration-300 text-[10px] uppercase tracking-wider sm:tracking-[0.3em] font-body flex items-center gap-3 group">
-                   <ChevronRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-gold" />
-                   {legal}
-                </a>
+            {[
+              { label: "Términos y Condiciones", to: "/terminos" },
+              { label: "Privacidad", to: "/privacidad" },
+              { label: "Cookies", to: "/cookies" },
+            ].map((item) => (
+              <li key={item.label}>
+                <Link
+                  to={item.to}
+                  className="text-white/50 hover:text-gold transition-all duration-300 text-[10px] uppercase tracking-wider sm:tracking-[0.3em] font-body flex items-center gap-3 group"
+                >
+                  <ChevronRight className="w-3 h-3 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-gold" />
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
@@ -138,14 +145,10 @@ const Footer = () => {
       </div>
 
       {/* Final Section */}
-      <div className="w-full max-w-7xl mx-auto mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
-        <p className="text-white/20 text-[8px] md:text-[9px] uppercase tracking-widest md:tracking-[0.2em] font-body text-center md:text-left text-balance max-w-[280px] sm:max-w-none">
+      <div className="w-full max-w-7xl mx-auto mt-32 pt-12 border-t border-white/5 flex justify-center relative z-10">
+        <p className="text-white/20 text-[8px] md:text-[9px] uppercase tracking-widest md:tracking-[0.2em] font-body text-center">
           &copy; {new Date().getFullYear()} Carina Lieventan. Todos los derechos reservados.
         </p>
-        <div className="flex items-baseline gap-2 group cursor-default">
-            <span className="text-white/10 text-[8px] uppercase tracking-widest font-body">Diseño y desarrollo por</span>
-            <span className="text-gold/40 font-display text-xs lowercase italic group-hover:text-gold transition-colors duration-700">antigravity laboratory</span>
-        </div>
       </div>
     </footer>
   );

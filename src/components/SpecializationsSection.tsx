@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Users, Brain, Dna, Network, Crown, Sun } from "lucide-react";
 import { Tilt } from "@/components/ui/tilt";
+import { staggerContainer, cardEntrance, sectionHeader, hoverLift } from "@/lib/animations";
 
 const specializations = [
   {
@@ -42,10 +43,7 @@ const SpecializationsSection = () => {
 
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
+          {...sectionHeader}
           className="text-center mb-20"
         >
           <span className="text-gold text-sm font-body tracking-[0.5em] uppercase mb-4 block">Sabiduría Integrada</span>
@@ -55,15 +53,15 @@ const SpecializationsSection = () => {
           <div className="w-24 h-px bg-gold/50 mx-auto mt-8" />
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {specializations.map((spec, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.8, ease: "easeOut" }}
-            >
+            <motion.div key={i} variants={cardEntrance} {...hoverLift}>
               <Tilt rotationFactor={10} className="h-full">
                 <div className="group h-full p-6 sm:p-10 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-gold/40 hover:bg-white/10 transition-all duration-500 hover:shadow-2xl hover:shadow-gold/5">
                   <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mb-8 group-hover:bg-gold/30 group-hover:scale-110 transition-all duration-500">
@@ -75,7 +73,7 @@ const SpecializationsSection = () => {
               </Tilt>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

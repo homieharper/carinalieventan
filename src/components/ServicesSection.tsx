@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { User, Route, HeartPulse, Compass } from "lucide-react";
+import { staggerContainer, cardEntrance, sectionHeader, hoverLift } from "@/lib/animations";
 
 const services = [
   {
@@ -34,9 +35,7 @@ const ServicesSection = () => {
     <section id="servicios" className="section-padding bg-background">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...sectionHeader}
           className="text-center mb-16"
         >
           <span className="text-gold text-sm font-body tracking-[0.3em] uppercase">Servicios</span>
@@ -49,15 +48,19 @@ const ServicesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-8"
+        >
           {services.map((service, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="group p-8 rounded-2xl bg-card border border-border hover:border-gold/50 hover:shadow-lg transition-all duration-500"
+              variants={cardEntrance}
+              {...hoverLift}
+              className="group p-8 rounded-2xl bg-card border border-border hover:border-gold/50 hover:shadow-lg transition-colors duration-500"
             >
               <div className="flex items-start gap-4 mb-6">
                 <div className="w-12 h-12 rounded-lg bg-gold/10 flex items-center justify-center shrink-0">
@@ -78,12 +81,13 @@ const ServicesSection = () => {
               </ul>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 60, damping: 20, delay: 0.2 }}
           className="text-center mt-12"
         >
           <Button variant="gold" size="lg" asChild>

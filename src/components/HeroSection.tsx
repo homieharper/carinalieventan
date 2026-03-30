@@ -57,7 +57,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ type: "spring", stiffness: 60, damping: 20 }}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold/10 border border-gold/40 backdrop-blur-md mb-10 group hover:bg-gold/20 transition-all duration-500"
           >
             <Sparkles className="w-4 h-4 text-gold animate-pulse" />
@@ -65,9 +65,9 @@ const HeroSection = () => {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            transition={{ type: "spring", stiffness: 55, damping: 20, delay: 0.15 }}
             className="font-display text-foreground leading-[0.9] lg:leading-[0.85] text-balance"
           >
             <span className="block text-[clamp(1.5rem,6.5vw,3.5rem)] lg:text-6xl xl:text-[7.5rem] font-extralight text-zinc-100/60 lowercase tracking-tighter italic whitespace-normal">
@@ -79,18 +79,18 @@ const HeroSection = () => {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+            transition={{ type: "spring", stiffness: 55, damping: 20, delay: 0.35 }}
             className="font-display text-base sm:text-xl md:text-2xl italic text-gold/90 mt-5 tracking-wide text-balance"
           >
             Terapias Holísticas y Escuela de Formación
           </motion.p>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+            transition={{ type: "spring", stiffness: 55, damping: 20, delay: 0.5 }}
             className="font-body text-zinc-200 mt-6 text-xs sm:text-sm md:text-lg leading-relaxed max-w-xl font-light"
           >
             Abriendo portales hacia tu sanación profunda. Acompaño procesos de transformación 
@@ -100,7 +100,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
+            transition={{ type: "spring", stiffness: 55, damping: 20, delay: 0.65 }}
             className="flex flex-wrap gap-6 mt-12"
           >
             <FlowButtonGold text="Explorar Terapias" href="#servicios" variant="white" />

@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, ArrowLeft, ArrowRight } from "lucide-react";
+import { sectionHeader } from "@/lib/animations";
 import {
   Carousel,
   CarouselContent,
@@ -60,9 +61,7 @@ const TestimonialsSection = () => {
     <section id="testimonios" className="section-padding bg-deep-green">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...sectionHeader}
           className="text-center mb-16"
         >
           <span className="text-gold text-sm font-body tracking-[0.3em] uppercase">Testimonios</span>

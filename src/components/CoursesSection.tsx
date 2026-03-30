@@ -2,15 +2,14 @@ import { motion } from "framer-motion";
 import { FlowButtonGold } from "@/components/ui/flow-button-gold";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import { courses } from "@/data/courses";
+import { staggerContainer, cardEntrance, sectionHeader } from "@/lib/animations";
 
 const CoursesSection = () => {
   return (
     <section id="formaciones" className="section-padding bg-deep-green overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...sectionHeader}
           className="text-center mb-16"
         >
           <span className="text-gold text-sm font-body tracking-[0.4em] uppercase block">Expandiendo Conocimiento</span>
@@ -23,15 +22,15 @@ const CoursesSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course, i) => (
-            <motion.div
-              key={course.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.8, ease: "easeOut" }}
-            >
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {courses.map((course) => (
+            <motion.div key={course.id} variants={cardEntrance}>
               {course.isComingSoon ? (
                 <GlowCard
                   glowColor="orange"
@@ -95,11 +94,10 @@ const CoursesSection = () => {
               )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
 export default CoursesSection;
-export { courses };

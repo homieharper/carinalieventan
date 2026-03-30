@@ -1,15 +1,14 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, Instagram, Send } from "lucide-react";
+import { sectionHeader, spring } from "@/lib/animations";
 
 const ContactSection = () => {
   return (
     <section id="contacto" className="section-padding bg-background">
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          {...sectionHeader}
           className="text-center mb-16"
         >
           <span className="text-gold text-sm font-body tracking-[0.3em] uppercase">Contacto</span>
@@ -23,10 +22,10 @@ const ContactSection = () => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
+          transition={{ ...spring, delay: 0.1 }}
           className="grid md:grid-cols-2 gap-12"
         >
           <div className="space-y-8">

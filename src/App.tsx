@@ -1,17 +1,26 @@
+import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ClerkProvider } from "@clerk/clerk-react";
 import { Analytics } from "@vercel/analytics/react";
 import Index from "./pages/Index";
 import LearningPage from "./pages/LearningPage";
-import PaymentPage from "./pages/PaymentPage";
 import SuccessPage from "./pages/SuccessPage";
 import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import { Preloader } from "./components/Preloader";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
+import CookiesPage from "./pages/CookiesPage";
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+};
 
 // Import Clerk Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
@@ -53,12 +62,15 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/formacion/:id" element={<LearningPage />} />
-              <Route path="/pago/:id" element={<PaymentPage />} />
               <Route path="/success" element={<SuccessPage />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/privacidad" element={<PrivacyPage />} />
+              <Route path="/terminos" element={<TermsPage />} />
+              <Route path="/cookies" element={<CookiesPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
