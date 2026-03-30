@@ -6,21 +6,19 @@
     <title>Carina Silvana Lieventan | Terapias Holísticas y Formación Espiritual</title>
     <meta name="description" content="Acompañamiento en sanación profunda y expansión de conciencia. Especialista en Constelaciones Familiares, Biodescodificación y Memoria Celular con más de 15 años de experiencia." />
     <meta name="author" content="Carina Silvana Lieventan" />
-    <meta name="keywords" content="terapias holísticas, constelaciones familiares, biodescodificación, memoria celular, sanación espiritual, formación holística, Carina Lieventan" />
-    
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://carinalieventan.com/" />
     <meta property="og:title" content="Carina Silvana Lieventan | Terapias Holísticas y Formación" />
     <meta property="og:description" content="Acompañando procesos de sanación profunda y expansión de la conciencia a través de abordajes sistémicos y espirituales." />
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:image" content="https://carinalieventan.com/og-image.jpg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://carinalieventan.com/" />
     <meta property="twitter:title" content="Carina Silvana Lieventan | Terapias Holísticas" />
     <meta property="twitter:description" content="Sanación profunda y formación en terapias sistémicas. Transformá tu vida hoy." />
-    <meta property="twitter:image" content="/og-image.jpg" />
+    <meta property="twitter:image" content="https://carinalieventan.com/og-image.jpg" />
 
     <!-- Favicon & PWA -->
     <link rel="icon" type="image/x-icon" href="/logo.ico" />
@@ -33,43 +31,92 @@
     <!-- Canonical for SEO consistency -->
     <link rel="canonical" href="https://carinalieventan.com/" />
     
-    <!-- Schema.json-ld -->
+    <!-- Schema.org structured data -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HealthAndBeautyBusiness",
-      "name": "Carina Silvana Lieventan",
-      "image": "https://carinalieventan.com/carina-profile.jpg",
-      "@id": "https://carinalieventan.com/",
-      "url": "https://carinalieventan.com/",
-      "telephone": "+542323318733",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Luján",
-        "addressRegion": "Buenos Aires",
-        "addressCountry": "AR"
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "HealthAndBeautyBusiness",
+        "@id": "https://carinalieventan.com/#business",
+        "name": "Carina Silvana Lieventan",
+        "image": "https://carinalieventan.com/carina-profile.jpg",
+        "url": "https://carinalieventan.com/",
+        "telephone": "+542323318733",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Luján",
+          "addressRegion": "Buenos Aires",
+          "addressCountry": "AR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -34.5703,
+          "longitude": -59.1114
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        "sameAs": [
+          "https://www.instagram.com/formaciones_holisticas/"
+        ]
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -34.5703,
-        "longitude": -59.1114
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://carinalieventan.com/#person",
+        "name": "Carina Silvana Lieventan",
+        "jobTitle": "Terapeuta Holística y Formadora",
+        "description": "Especialista en Constelaciones Familiares, Biodescodificación y Memoria Celular con más de 15 años de experiencia en acompañamiento terapéutico y formación.",
+        "image": "https://carinalieventan.com/carina-profile.jpg",
+        "url": "https://carinalieventan.com/",
+        "telephone": "+542323318733",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Luján",
+          "addressRegion": "Buenos Aires",
+          "addressCountry": "AR"
+        },
+        "sameAs": [
+          "https://www.instagram.com/formaciones_holisticas/"
         ],
-        "opens": "09:00",
-        "closes": "20:00"
+        "worksFor": {
+          "@id": "https://carinalieventan.com/#business"
+        }
       },
-      "sameAs": [
-        "https://www.instagram.com/formaciones_holisticas/"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "@id": "https://carinalieventan.com/formacion/heridas-infantiles-pareja",
+        "name": "Heridas infantiles y Elecciones de pareja | Masterclass",
+        "description": "Comprende, reconoce y transforma los patrones emocionales que nacen en la infancia y se proyectan en tus vínculos amorosos. Masterclass pregrabada con material complementario.",
+        "url": "https://carinalieventan.com/formacion/heridas-infantiles-pareja",
+        "image": "https://carinalieventan.com/og-image.jpg",
+        "inLanguage": "es",
+        "timeRequired": "PT1H13M",
+        "numberOfLessons": 9,
+        "courseMode": "online",
+        "educationalLevel": "beginner",
+        "teaches": [
+          "Las 5 heridas infantiles primarias",
+          "Cómo las heridas influyen en la elección de pareja",
+          "Mecanismos de defensa y patrones de repetición",
+          "Herramientas para la sanación consciente"
+        ],
+        "provider": {
+          "@id": "https://carinalieventan.com/#person"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "49000",
+          "priceCurrency": "ARS",
+          "availability": "https://schema.org/InStock",
+          "url": "https://carinalieventan.com/formacion/heridas-infantiles-pareja"
+        }
+      }
+    ]
     </script>
 
   </head>
