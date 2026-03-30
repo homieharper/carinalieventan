@@ -61,7 +61,7 @@ const HeroSection = () => {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold/10 border border-gold/40 backdrop-blur-md mb-10 group hover:bg-gold/20 transition-all duration-500"
           >
             <Sparkles className="w-4 h-4 text-gold animate-pulse" />
-            <span className="text-xs md:text-sm font-body font-medium tracking-widest text-gold uppercase">Conciencia que Sana y Transforma</span>
+            <span className="text-[10px] sm:text-xs md:text-sm font-body font-medium tracking-wider sm:tracking-widest text-gold uppercase">Conciencia que Sana y Transforma</span>
           </motion.div>
 
           <motion.h1
@@ -70,10 +70,10 @@ const HeroSection = () => {
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             className="font-display text-foreground leading-[0.9] lg:leading-[0.85] text-balance"
           >
-            <span className="block text-[6.5vw] sm:text-4xl lg:text-6xl xl:text-[7.5rem] font-extralight text-zinc-100/60 lowercase tracking-tighter italic whitespace-normal">
+            <span className="block text-[clamp(1.5rem,6.5vw,3.5rem)] lg:text-6xl xl:text-[7.5rem] font-extralight text-zinc-100/60 lowercase tracking-tighter italic whitespace-normal">
               Carina Silvana
             </span>
-            <span className="block text-[8.5vw] sm:text-6xl md:text-[7vw] lg:text-[7.5vw] xl:text-[clamp(5rem,9.5vw,9.5rem)] font-bold tracking-tighter mt-2 bg-clip-text text-transparent bg-gradient-to-br from-gold/90 via-gold to-gold-dark break-words">
+            <span className="block text-[clamp(2rem,8.5vw,3.75rem)] md:text-[7vw] lg:text-[7.5vw] xl:text-[clamp(5rem,9.5vw,9.5rem)] font-bold tracking-tighter mt-2 bg-clip-text text-transparent bg-gradient-to-br from-gold/90 via-gold to-gold-dark break-words">
               LIEVENTAN
             </span>
           </motion.h1>
@@ -82,7 +82,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-            className="font-display text-lg sm:text-xl md:text-2xl italic text-gold/90 mt-5 tracking-wide text-balance"
+            className="font-display text-base sm:text-xl md:text-2xl italic text-gold/90 mt-5 tracking-wide text-balance"
           >
             Terapias Holísticas y Escuela de Formación
           </motion.p>
@@ -91,7 +91,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
-            className="font-body text-zinc-200 mt-6 text-sm md:text-lg leading-relaxed max-w-xl font-light"
+            className="font-body text-zinc-200 mt-6 text-xs sm:text-sm md:text-lg leading-relaxed max-w-xl font-light"
           >
             Abriendo portales hacia tu sanación profunda. Acompaño procesos de transformación 
             y expansión de la conciencia a través de abordajes sistémicos que honran tu historia.

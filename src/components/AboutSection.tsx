@@ -50,7 +50,7 @@ const AboutSection = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="space-y-10"
             >
-                <p className="font-body text-muted-foreground leading-relaxed text-xl md:text-2xl font-light">
+                <p className="font-body text-muted-foreground leading-relaxed text-base sm:text-xl md:text-2xl font-light">
                     Mi labor trasciende la técnica; es un compromiso con el alma. 
                     Acompaño procesos de <span className="text-gold italic">sanación profunda</span> donde integramos lo visible 
                     con lo espiritual para revelar tu verdadera esencia.
@@ -68,7 +68,7 @@ const AboutSection = () => {
                     </p>
                 </div>
 
-                <blockquote className="font-display text-2xl md:text-3xl text-foreground/90 italic leading-snug pt-4">
+                <blockquote className="font-display text-xl sm:text-2xl md:text-3xl text-foreground/90 italic leading-snug pt-4">
                     “Mi vocación es iluminar las sombras del sistema familiar para que la vida vuelva a fluir con amor y libertad.”
                 </blockquote>
             </motion.div>

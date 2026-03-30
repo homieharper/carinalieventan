@@ -13,7 +13,7 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <span className="text-gold text-sm font-body tracking-[0.3em] uppercase">Contacto</span>
-          <h2 className="font-display text-4xl md:text-5xl mt-4 text-foreground">
+          <h2 className="font-display text-2xl sm:text-4xl md:text-5xl mt-4 text-foreground">
             Comienza tu <span className="text-gradient-gold italic">Proceso</span>
           </h2>
           <p className="font-body text-muted-foreground mt-4 max-w-xl mx-auto">

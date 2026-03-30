@@ -28,7 +28,7 @@ const Header = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
       
-      const sections = navLinks.map(link => link.href.split("#")[1]);
+      const sections = navLinks.map(link => link.href.split("#")[1]).filter(Boolean);
       const current = sections.find(id => {
         const el = document.getElementById(id);
         if (el) {
@@ -37,7 +37,8 @@ const Header = () => {
         }
         return false;
       });
-      if (current) setActiveSection(current);
+      // Si ninguna sección está activa, estamos en el Hero → "Inicio" activo
+      setActiveSection(current ?? "");
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -66,7 +67,7 @@ const Header = () => {
                     <img src={logo} alt="Logo" className="w-8 h-8 md:w-11 md:h-11 relative transition-transform duration-700 group-hover:rotate-[360deg]" />
                 </div>
                 <div className="flex flex-col">
-                    <span className="font-display text-xs sm:text-sm md:text-xl text-gold leading-none tracking-wider md:tracking-[0.2em] uppercase">Carina Lieventan</span>
+                    <span className="font-display text-xs sm:text-sm md:text-xl text-gold leading-none tracking-wide sm:tracking-wider md:tracking-[0.2em] uppercase">Carina Lieventan</span>
                 </div>
              </Link>
 
@@ -77,15 +78,16 @@ const Header = () => {
             const isActive = activeSection === id;
 
             if (link.label === "Inicio") {
+                const isHomeActive = activeSection === "";
                 return (
                     <Link
                         key={link.label}
                         to="/"
                         onClick={handleLogoClick}
-                        className={`text-[11px] font-body transition-all duration-500 uppercase tracking-[0.2em] relative group ${showSolid ? "text-slate-600 hover:text-gold" : "text-white/80 hover:text-white"}`}
+                        className={`text-[11px] font-body transition-all duration-500 uppercase tracking-[0.2em] relative group ${isHomeActive ? "text-gold font-medium" : showSolid ? "text-slate-600 hover:text-gold" : "text-white/80 hover:text-white"}`}
                     >
                         {link.label}
-                        <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-700 w-0 group-hover:w-full`} />
+                        <span className={`absolute -bottom-1 left-0 h-px bg-gold transition-all duration-700 ${isHomeActive ? "w-full" : "w-0 group-hover:w-full"}`} />
                     </Link>
                 );
             }

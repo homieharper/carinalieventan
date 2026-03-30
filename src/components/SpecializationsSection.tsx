@@ -65,7 +65,7 @@ const SpecializationsSection = () => {
               transition={{ delay: i * 0.1, duration: 0.8, ease: "easeOut" }}
             >
               <Tilt rotationFactor={10} className="h-full">
-                <div className="group h-full p-10 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-gold/40 hover:bg-white/10 transition-all duration-500 hover:shadow-2xl hover:shadow-gold/5">
+                <div className="group h-full p-6 sm:p-10 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-gold/40 hover:bg-white/10 transition-all duration-500 hover:shadow-2xl hover:shadow-gold/5">
                   <div className="w-16 h-16 rounded-2xl bg-gold/10 flex items-center justify-center mb-8 group-hover:bg-gold/30 group-hover:scale-110 transition-all duration-500">
                     <spec.icon className="w-8 h-8 text-gold" />
                   </div>

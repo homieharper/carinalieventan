@@ -66,12 +66,12 @@ const TestimonialsSection = () => {
           className="text-center mb-16"
         >
           <span className="text-gold text-sm font-body tracking-[0.3em] uppercase">Testimonios</span>
-          <h2 className="font-display text-4xl md:text-5xl mt-4 text-primary-foreground">
+          <h2 className="font-display text-2xl sm:text-4xl md:text-5xl mt-4 text-primary-foreground">
             Voces que <span className="text-gradient-gold italic">Inspiran</span>
           </h2>
         </motion.div>
 
-        <div className="relative px-14">
+        <div className="relative px-8 sm:px-14">
           {/* Prev / Next arrows */}
           <Button
             variant="outline"

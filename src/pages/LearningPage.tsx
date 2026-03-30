@@ -36,7 +36,11 @@ const LearningPage = () => {
     const course = courses.find((c) => c.id === id);
     const [activeLessonId, setActiveLessonId] = useState(course?.lessons?.[0]?.id);
     const [isProcessing, setIsProcessing] = useState(false);
-    const [hasAccess, setHasAccess] = useState(false);
+    // Seed from localStorage cache so the UI shows immediately on revisit
+    const [hasAccess, setHasAccess] = useState(() => {
+        if (!course) return false;
+        return localStorage.getItem(`access_${course.id}`) === 'true';
+    });
     const [completedLessons, setCompletedLessons] = useState<string[]>([]);
 
     // Lógica para sincronizar la altura de la barra lateral con el video
@@ -94,25 +98,18 @@ const LearningPage = () => {
         const checkAccess = async () => {
             if (!user || !course) return;
 
-            try {
-                // Use backend endpoint (service_role key) to bypass Supabase RLS
-                const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3001'}/api/check-access`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ userId: user.id, courseId: course.id })
-                });
-                const result = await res.json();
-                if (result.hasAccess) setHasAccess(true);
-            } catch (err) {
-                // Fallback: direct Supabase query (works if RLS allows anon reads)
-                const { data } = await supabase
-                    .from('enrollments')
-                    .select('id')
-                    .eq('user_id', user.id)
-                    .eq('course_id', course.id)
-                    .limit(1);
-                if (data && data.length > 0) setHasAccess(true);
-            }
+            // Query Supabase directly — fastest path, no extra server hop
+            const { data } = await supabase
+                .from('enrollments')
+                .select('id')
+                .eq('user_id', user.id)
+                .eq('course_id', course.id)
+                .limit(1);
+
+            const access = !!(data && data.length > 0);
+            // Persist result so next visit is instant
+            localStorage.setItem(`access_${course.id}`, String(access));
+            setHasAccess(access);
         };
 
         checkAccess();
